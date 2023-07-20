@@ -1,0 +1,92 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model EmailModel
+
+
+
+@{
+    ViewData["Title"] = "Contact Me";
+}
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="wwwroot\css\site.css" />
+</head>
+
+<body>
+<div class="contact-row">
+    
+    <h1 class="contact-header">@ViewData["Title"]</h1>
+    
+    <a href="http://www.linkedin.com/in/markus-knight-86900b235">
+    <div class="linkedin-image-class">
+        <img class="linkedin-image" src="@Url.Content("~/Images/linkedin.jpg")", height="100" width="100" />
+    </div></a>
+    
+</div>
+
+<p class= "contact-intro">My main professional point of contact is via e-mail or LinkedIn. Please fill out the email form at the bottom of this page to get in touch.</p>
+
+<h2 class= "email-form">Email Form</h2>
+<div>
+    <div class="col-md-6">
+        <div>
+            @if (ViewBag.Message == null)
+            {
+                <div>
+                    <form action="https://formspree.io/f/xwkdpoyo" method="post">
+                        <div class="form-group">
+                            <label asp-for="Name">Your Name</label>
+                            <input asp-for="Name" class="form-control" required/>
+                            <span asp-validation-for="Name"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Your Email</label>
+                            <input asp-for="Email" class="form-control" required/>
+                            <span asp-validation-for="Email"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Subject">Subject</label>
+                            <input asp-for="Subject" class="form-control" />
+                            <span asp-validation-for="Subject"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Message">Message</label>
+                            <textarea rows="5" cols="15"
+                                      asp-for="Message" class="form-control" required></textarea>
+                            <span asp-validation-for="Message"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="submit">
+                            <button type="submit"
+                                    class="submit-btn btn-success">
+                                Send
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            }
+        </div>
+
+        <div>
+            <div>
+                @if (ViewBag.Message != null)
+                {
+                    <div>@ViewBag.Message</div>
+
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
